@@ -77,7 +77,7 @@ write.csv(data, file.path("data/Kdrama.csv"))
 rtweet::post_tweet(
   status = status_details,
   media = file,
-  media_alt_text = NULL,
+  media_alt_text = alt_text,
   token = drakor_token
 )
 
