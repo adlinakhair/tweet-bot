@@ -55,9 +55,6 @@ status_details <- paste0(
 file <- tempfile(fileext = ".jpeg")
 download.file(dataSiap$Img[1], file, mode="auto")
 
-## Provide alt-text description
-alt_text <- paste0(simpleCap(dataSiap$Title[1]))
-
 # Publish to Twitter
 library(rtweet)
 
@@ -69,14 +66,18 @@ drakor_token <- rtweet::rtweet_bot(
   access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 )
 
+## Provide alt-text description
+alt_text <- paste0(simpleCap(dataSiap$Title[1]))
+
 # save the data
-write.csv(data, file.path("data/cobasimpan.csv"))
+dir.create(file.path('data'))
+write.csv(data, file.path("data/Kdrama.csv"))
 
 ## Post the image to Twitter
 rtweet::post_tweet(
   status = status_details,
   media = file,
-  media_alt_text = alt_text,
+  media_alt_text = NULL,
   token = drakor_token
 )
 
