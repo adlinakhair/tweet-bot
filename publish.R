@@ -46,7 +46,7 @@ simpleCap <- function(x) {
 status_details <- paste0(
   "Title : ", simpleCap(dataSiap$Title[1]),
   "\n",
-  simpleCap(dataSiap$Description[1]), "https://www.dramabeans.com/recaps/",
+  simpleCap(dataSiap$Description[1]),
   "\n",
   "#", samp_word, " #recapsdrama #", paste(gsub(" ", "", simpleCap(dataSiap$Title), fixed = TRUE)))
 
@@ -59,7 +59,7 @@ download.file(dataSiap$Img[1], file, mode="auto")
 library(rtweet)
 
 ## Create Twitter token
-drakor_token <- rtweet::rtweet_bot(
+twitter_token <- rtweet::rtweet_bot(
   api_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
   api_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
   access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
@@ -78,7 +78,7 @@ rtweet::post_tweet(
   status = status_details,
   media = file,
   media_alt_text = alt_text,
-  token = drakor_token
+  token = twitter_token
 )
 
 query3 <- '
