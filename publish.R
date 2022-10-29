@@ -50,10 +50,9 @@ status_details <- paste0(
   "\n",
   "#", samp_word, " #recapsdrama #", paste(gsub(" ", "", simpleCap(dataSiap$Title), fixed = TRUE)))
 
-# Download the image to a temporary location
-# save to a temp file
-file <- tempfile(fileext = ".jpeg")
-download.file(dataSiap$Img[1], file, mode="wb")
+# Download the image
+imageUrl <- dataSiap$Img[1]
+download.file(imageUrl, 'image.jpg', mode="wb")
 
 # Publish to Twitter
 library(rtweet)
@@ -76,7 +75,7 @@ write.csv(data, file.path("data/Kdrama.csv"))
 ## Post the image to Twitter
 rtweet::post_tweet(
   status = status_details,
-  media = file,
+  media = 'image.jpg',
   media_alt_text = alt_text,
   token = twitter_token
 )
