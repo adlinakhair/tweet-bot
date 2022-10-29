@@ -53,7 +53,7 @@ status_details <- paste0(
 # Download the image to a temporary location
 # save to a temp file
 file <- tempfile(fileext = ".jpeg")
-download.file(dataSiap$Img[1], file, mode="auto")
+download.file(dataSiap$Img[1], file, mode="wb")
 
 # Publish to Twitter
 library(rtweet)
